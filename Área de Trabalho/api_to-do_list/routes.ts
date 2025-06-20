@@ -1,4 +1,7 @@
 import { Router } from 'express';
+import TaskController from './src/controllers/TaskController';
+
+const taskController = new TaskController();
 
 const router = Router();
 
@@ -11,11 +14,7 @@ router.get('/task/:id_task', (req, res) => {
     res.send(`Details for task with ID: ${taskId}`);
 });
 
-router.post('/task', (req, res) => {
-    const newTask = req.body;
-    // Here you would typically save the new task to a database
-    res.status(201).send(`Task created with ID: ${newTask.id}`);
-});
+router.post('/task', taskController.add);
 
 router.delete('/task/:id_task', (req, res) => {
     const taskId = req.params.id_task;
