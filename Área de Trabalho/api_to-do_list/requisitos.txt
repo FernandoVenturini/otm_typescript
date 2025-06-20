@@ -1,4 +1,4 @@
-ROUTE - /task/add - Adicionar uma tarefa
+ROUTE - /task - Adicionar uma tarefa
 {
     id
     descricao
@@ -8,7 +8,7 @@ ROUTE - /task/add - Adicionar uma tarefa
 
 -------------------------------------------
 
-ROUTE - /task/update/{id_task} - Editar uma tarefa
+ROUTE - /task/{id_task} - Editar uma tarefa
 {
     id
     descricao
