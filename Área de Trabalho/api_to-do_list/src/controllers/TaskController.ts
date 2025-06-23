@@ -11,6 +11,16 @@ class TaskController {
 
     }
 
+    get(Req: Request, Res: Response) {
+        const { status } = Req.query;
+        if (status && (status === "in_progress" || status === "Em andamento" || status === "completed")) {
+            taskService.get(status);
+        } else {
+            Res.json({error: "Invalid parameters! Please provide a status."});
+            Res.status(400);
+        }
+    }
+
     add(Req:Request, Res:Response) {
         const { id, descricao, data, status } = Req.body;
 

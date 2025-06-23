@@ -2,7 +2,7 @@ export interface Task {
     id: string;
     descricao: string;
     data: string; // ISO date string
-    status: 'Pendente' | 'Em andamento' | 'Concluída';
+    status: 'in_progress' | 'Em andamento' | 'completed';
     prioridade?: 'Baixa' | 'Média' | 'Alta'; // Optional field for task priority
 }
 

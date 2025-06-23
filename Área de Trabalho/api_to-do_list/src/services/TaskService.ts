@@ -10,6 +10,13 @@ class TaskService {
 
     }
 
+    get(status:string) {
+        const result = taskRepository.get();
+        result.map((obj) => {
+
+        })
+    }
+
     add(data:Task): Task{
         return taskRepository.add(data);
     }
