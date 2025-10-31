@@ -1,0 +1,22 @@
+{
+	"name": "otm_typescript",
+	"version": "1.0.0",
+	"description": "Projeto TypeScript OTM - Sistema de Gerenciamento de Usuários",
+	"main": "dist/index.js",
+	"scripts": {
+	  "build": "tsc",
+	  "dev": "ts-node src/index.ts",
+	  "start": "node dist/index.js",
+	  "watch": "tsc --watch",
+	  "dev:watch": "nodemon --exec ts-node src/index.ts"
+	},
+	"keywords": ["typescript", "otm", "nodejs"],
+	"author": "Seu Nome",
+	"license": "MIT",
+	"devDependencies": {
+	  "@types/node": "^20.0.0",
+	  "nodemon": "^3.0.0",
+	  "ts-node": "^10.9.0",
+	  "typescript": "^5.0.0"
+	}
+  }
