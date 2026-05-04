@@ -19,6 +19,17 @@ function Calculadora() {
     // Método que captura quando a tecla Enter é pressionada
     this.capturaEnter = () => {
         // Adiciona um evento 'keyup' (quando a tecla é solta) em todo o documento
+
+function Calculadora() { // Funcao construtora, tem a letra maiuscula
+    this.display = document.querySelector('.display'); // Acessa o display da calculadora
+
+    this.inicia = () => { // Funcao que inicia a calculadora, chama as outras funcoes
+        this.capturaCliques(); // Chama a funcao que captura os cliques dos botoes
+        this.capturaEnter(); // Chama a funcao que captura o enter, para realizar a conta quando o usuario apertar enter
+    };
+
+    this.capturaEnter = () => { // Funcao que captura o enter, para realizar a conta quando o usuario apertar enter
+        
         document.addEventListener('keyup', e => {
             // Verifica se o código da tecla pressionada é 13 (Enter)
             if (e.keyCode === 13) {
