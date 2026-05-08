@@ -13,11 +13,11 @@ function Calculadora() {
     // Seta os eventos de clique e teclado
     this.inicia = () => {
         this.capturaCliques();  // Ativa a captura de cliques nos botões
-        this.capturaEnter();     // Ativa a captura da tecla Enter
+        this.capturaEnter();    // Ativa a captura da tecla Enter
     };
 
     // Método que captura quando a tecla Enter é pressionada
-    this.capturaEnter = () => {
+    this.capturaEnter = ( ) => { // Captura eventos de teclado em todo o documento
         // Adiciona um evento 'keyup' (quando a tecla é solta) em todo o documento
         document.addEventListener('keyup', e => {
             // Verifica se o código da tecla pressionada é 13 (Enter)
@@ -31,8 +31,9 @@ function Calculadora() {
     this.capturaCliques = () => {
         // Adiciona evento de clique no documento inteiro
         document.addEventListener('click', event => {
+
             const el = event.target;  // Pega o elemento específico que foi clicado
-            
+
             // Verifica se o elemento clicado tem a classe 'btn-num' (botão número)
             if (el.classList.contains('btn-num')) this.addNumDisplay(el);
             
@@ -90,3 +91,4 @@ const calculadora = new Calculadora();
 
 // Inicializa a calculadora (ativa todos os eventos)
 calculadora.inicia();
+
