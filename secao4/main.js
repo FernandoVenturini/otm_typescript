@@ -2,24 +2,6 @@
 
 // Declaração da função construtora Calculadora
 // Funções construtoras são usadas para criar múltiplos objetos com a mesma estrutura
-function Calculadora() {
-    
-    // Cria uma propriedade 'display' no objeto que está sendo criado (this)
-    // document.querySelector('.display') - seleciona o elemento HTML com a classe 'display'
-    // Esse elemento é onde os números e resultados serão mostrados
-    this.display = document.querySelector('.display');
-
-    // Método que inicializa a calculadora
-    // Seta os eventos de clique e teclado
-    this.inicia = () => {
-        this.capturaCliques();  // Ativa a captura de cliques nos botões
-        this.capturaEnter();    // Ativa a captura da tecla Enter
-    };
-
-    // Método que captura quando a tecla Enter é pressionada
-    this.capturaEnter = ( ) => { // Captura eventos de teclado em todo o documento
-        // Adiciona um evento 'keyup' (quando a tecla é solta) em todo o documento
-
 function Calculadora() { // Funcao construtora, tem a letra maiuscula
     this.display = document.querySelector('.display'); // Acessa o display da calculadora
 
@@ -90,7 +72,7 @@ function Calculadora() { // Funcao construtora, tem a letra maiuscula
 
     // Método que limpa todo o display
     // Atribui uma string vazia ao campo
-    this.clear = () => this.display.value = '';
+    this.clear = () => this.display.value = '""';
     
     // Método que apaga o ÚLTIMO caractere do display
     // slice(0, -1) pega do início até o penúltimo caractere
@@ -102,4 +84,3 @@ const calculadora = new Calculadora();
 
 // Inicializa a calculadora (ativa todos os eventos)
 calculadora.inicia();
-
