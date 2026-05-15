@@ -14,7 +14,7 @@ function Calculadora() { // Funcao construtora, tem a letra maiuscula
         
         document.addEventListener('keyup', e => {
             // Verifica se o código da tecla pressionada é 13 (Enter)
-            if (e.keyCode === 13) {
+            if (e.key === 13) {
                 this.realizaConta();  // Executa o cálculo
             }
         });
