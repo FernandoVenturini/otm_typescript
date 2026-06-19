@@ -16,7 +16,8 @@ const pessoas = [
     { nome: 'Alice', idade: 55 },
     { nome: 'Bob', idade: 51 },
     { nome: 'Charlie', idade: 35 },
-    {nome: 'Otavio', idade: 28}
+    {nome: 'Otavio', idade: 28},
+    {nome: 'Maria', idade: 48},
 ];
  // RETORNAR AS PESSOAS COM MAIS DE 30 ANOS:
 const pessoasFiltradas = pessoas.filter((pessoa) => pessoa.idade > 30);
@@ -29,3 +30,12 @@ console.log('Pessoas com nome grande:', pessoasComNomeGrande); // [{ nome: 'Alic
 // RETORNAR AS PESSOAS COM MAIS DE 50 ANOS:
 const pessoasComMaisDe50Anos = pessoas.filter((pessoa) => pessoa.idade > 50);
 console.log('Pessoas com mais de 50 anos:', pessoasComMaisDe50Anos); // [{ nome: 'Alice', idade: 55 }, { nome: 'Bob', idade: 51 }]
+
+// RETORNAR AS PESSOAS COM NOME QUE COMEÇA COM A LETRA 'A':
+const pessoasComNomeA = pessoas.filter((pessoa) => pessoa.nome.startsWith('A')); // [{ nome: 'Alice', idade: 55 }]
+console.log('Pessoas com nome que começa com A:', pessoasComNomeA); // [{ nome: 'Alice', idade: 55 }]
+
+const nomeTerminaComA = pessoas.filter((pessoa) => {
+    return pessoa.nome.toLowerCase().endsWith('a'); // [{ nome: 'Alice', idade: 55 }]
+});
+console.log('Pessoas com nome que termina com a:', nomeTerminaComA); // [{ nome: 'Alice', idade: 55 }]
