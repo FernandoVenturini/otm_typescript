@@ -11,3 +11,21 @@ const numerosFiltrados = numeros.filter( (valor)  => {
     return valor > 5;
 });
 console.log('Numeros filtrados:', numerosFiltrados); // [6, 7, 8, 9, 10]
+
+const pessoas = [
+    { nome: 'Alice', idade: 55 },
+    { nome: 'Bob', idade: 51 },
+    { nome: 'Charlie', idade: 35 },
+    {nome: 'Otavio', idade: 28}
+];
+ // RETORNAR AS PESSOAS COM MAIS DE 30 ANOS:
+const pessoasFiltradas = pessoas.filter((pessoa) => pessoa.idade > 30);
+console.log('Pessoas filtradas:', pessoasFiltradas); // [{ nome: 'Charlie', idade: 35 }]
+
+// RETORNAR AS PESSOAS COM NOME GRANDE (MAIOR OU IGUAL A 5 CARACTERES):
+const pessoasComNomeGrande = pessoas.filter((pessoa) => pessoa.nome.length >=  5);
+console.log('Pessoas com nome grande:', pessoasComNomeGrande); // [{ nome: 'Alice', idade: 25 }, { nome: 'Charlie', idade: 35 }]
+
+// RETORNAR AS PESSOAS COM MAIS DE 50 ANOS:
+const pessoasComMaisDe50Anos = pessoas.filter((pessoa) => pessoa.idade > 50);
+console.log('Pessoas com mais de 50 anos:', pessoasComMaisDe50Anos); // [{ nome: 'Alice', idade: 55 }, { nome: 'Bob', idade: 51 }]
