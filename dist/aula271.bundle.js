@@ -1,0 +1,139 @@
+/******/ (() => { // webpackBootstrap
+/*!**************************************!*\
+  !*** ./src/secao19/aula271/index.ts ***!
+  \**************************************/
+// ETAPA 1: Introdução ao Tipo Any
+// 1. Declarando uma variável com tipo 'any'
+var dados = "Texto inicial";
+// 'any' desativa a verificação de tipos - aceita qualquer valor
+
+// 2. Reatribuindo com diferentes tipos (algo que daria erro com outros tipos)
+dados = 42; // Número - válido com 'any'
+dados = true; // Boolean - válido com 'any'
+dados = [1, 2, 3]; // Array - válido com 'any'
+
+// ETAPA 2: Any vs Tipos Específicos
+// 3. Comparação: variável tipada vs any
+var nome = "João";
+// nome = 123; // ERRO: Type 'number' not assignable to type 'string'
+
+var informacao = "Maria";
+informacao = 456; // VÁLIDO: 'any' permite qualquer atribuição
+
+// 4. Usando any com objetos
+var usuario = {
+  nome: "Carlos",
+  idade: 30
+};
+
+// 5. Modificando propriedades livremente
+usuario.email = "carlos@email.com"; // Adicionando nova propriedade
+usuario.idade = "trinta"; // Mudando tipo da propriedade
+
+// ETAPA 3: Any em Funções
+// 6. Função com parâmetro any - aceita qualquer tipo de argumento
+function processarDados(entrada) {
+  console.log("Processando: ".concat(entrada));
+  return entrada; // Pode retornar qualquer tipo
+}
+
+// 7. Chamadas válidas com diferentes tipos
+processarDados("texto"); // String
+processarDados(123); // Number  
+processarDados({
+  chave: "valor"
+}); // Object
+
+// 8. Função que retorna any - perdemos a informação do tipo
+function obterDados() {
+  return Math.random() > 0.5 ? "sucesso" : 404;
+}
+var resultado = obterDados();
+// resultado pode ser string ou number - TypeScript não sabe qual
+
+// ETAPA 4: Any com Arrays
+// 9. Array com tipo any - pode misturar tipos diferentes
+var listaMista = ["texto", 42, true, {
+  nome: "obj"
+}];
+// Diferente de arrays normais que exigem tipos consistentes
+
+// 10. Adicionando qualquer tipo ao array
+listaMista.push(null);
+listaMista.push([1, "dois", false]);
+
+// 11. Acessando elementos sem verificação de tipo
+var primeiro = listaMista[0]; // Tipo: any - pode ser qualquer coisa
+
+// ETAPA 5: Problemas e Riscos do Any
+// 12. PERIGO: Operações sem verificação de tipo
+var valor = "isso é um texto";
+
+// 13. TypeScript não previne operações inválidas
+var comprimento = valor.length; // Funciona - valor é string
+valor = 123; // Mudou para number
+var comprimento2 = valor.length; // UNDEFINED! number não tem .length
+
+// 14. PERIGO: Chamadas de método sem verificação
+var objeto = {
+  x: 10
+};
+// objeto.metodoInexistente(); // ERRO em tempo de execução!
+
+// 15. PERIGO: Operações matemáticas com tipos incompatíveis
+var numero = "100";
+var resultado2 = numero + 50; // "10050" (concatenação em vez de soma)
+
+// ETAPA 6: Casos de Uso Legítimos do Any
+// 16. Migração de JavaScript para TypeScript
+var dadosLegados = obterDadosDeBibliotecaJavaScript();
+// Útil quando não sabemos o tipo retornado por bibliotecas externas
+
+// 17. Trabalhando com APIs dinâmicas
+function parseJson(jsonString) {
+  return JSON.parse(jsonString); // O tipo do JSON pode variar
+}
+var dadosApi = parseJson('{"nome": "João", "idade": 30}');
+// TypeScript não sabe a estrutura do objeto retornado
+
+// 18. Quando precisamos de flexibilidade temporária
+var config = carregarConfiguracao();
+// Mais tarde podemos refinar para tipos específicos
+
+// ETAPA 7: Alternativas Melhores que Any
+// 19. Em vez de any, use union types quando possível
+var id = "ABC123";
+id = 123; // Válido, mas mais seguro que any
+
+// 20. Unknown - alternativa mais segura ao any
+var dadosSeguros = "texto";
+// dadosSeguros.toUpperCase(); // ERRO: precisa de type guard
+
+// 21. Type guards com unknown
+if (typeof dadosSeguros === "string") {
+  dadosSeguros.toUpperCase(); // Agora seguro - TypeScript sabe que é string
+}
+
+// 22. Interfaces para objetos dinâmicos
+
+var dadosFlexiveis = {
+  nome: "Maria",
+  idade: 25,
+  ativo: true
+};
+
+// 23. QUANDO USAR ANY:
+// - Migração gradual de JS para TS
+// - Dados de fontes externas desconhecidas  
+// - Prototipagem rápida
+
+// 24. QUANDO EVITAR ANY:
+// - Código de produção
+// - Quando tipos podem ser inferidos
+// - Para manter a segurança de tipos
+
+// 25. LEMBRETE: Any remove todos os benefícios do TypeScript!
+// Use com moderação e prefira tipos específicos quando possível
+/******/ })()
+;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,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QixHQUFHLFFBQVE7QUFDbENBLEVBQUUsR0FBRyxHQUFHLENBQUMsQ0FBQzs7QUFFVjtBQUNBLElBQUlDLFlBQXFCLEdBQUcsT0FBTztBQUNuQzs7QUFFQTtBQUNBLElBQUksT0FBT0EsWUFBWSxLQUFLLFFBQVEsRUFBRTtFQUNsQ0EsWUFBWSxDQUFDQyxXQUFXLENBQUMsQ0FBQyxDQUFDLENBQUM7QUFDaEM7O0FBRUE7O0FBS0EsSUFBTUMsY0FBOEIsR0FBRztFQUNuQ3RDLElBQUksRUFBRSxPQUFPO0VBQ2JHLEtBQUssRUFBRSxFQUFFO0VBQ1RvQyxLQUFLLEVBQUU7QUFDWCxDQUFDOztBQUVEO0FBQ0E7QUFDQTtBQUNBOztBQUVBO0FBQ0E7QUFDQTtBQUNBOztBQUVBO0FBQ0EsZ0UiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvc2VjYW8xOS9hdWxhMjcxL2luZGV4LnRzIl0sInNvdXJjZXNDb250ZW50IjpbIi8vIEVUQVBBIDE6IEludHJvZHXDp8OjbyBhbyBUaXBvIEFueVxuLy8gMS4gRGVjbGFyYW5kbyB1bWEgdmFyacOhdmVsIGNvbSB0aXBvICdhbnknXG5sZXQgZGFkb3M6IGFueSA9IFwiVGV4dG8gaW5pY2lhbFwiO1xuLy8gJ2FueScgZGVzYXRpdmEgYSB2ZXJpZmljYcOnw6NvIGRlIHRpcG9zIC0gYWNlaXRhIHF1YWxxdWVyIHZhbG9yXG5cbi8vIDIuIFJlYXRyaWJ1aW5kbyBjb20gZGlmZXJlbnRlcyB0aXBvcyAoYWxnbyBxdWUgZGFyaWEgZXJybyBjb20gb3V0cm9zIHRpcG9zKVxuZGFkb3MgPSA0MjsgICAgICAgIC8vIE7Dum1lcm8gLSB2w6FsaWRvIGNvbSAnYW55J1xuZGFkb3MgPSB0cnVlOyAgICAgIC8vIEJvb2xlYW4gLSB2w6FsaWRvIGNvbSAnYW55J1xuZGFkb3MgPSBbMSwgMiwgM107IC8vIEFycmF5IC0gdsOhbGlkbyBjb20gJ2FueSdcblxuLy8gRVRBUEEgMjogQW55IHZzIFRpcG9zIEVzcGVjw61maWNvc1xuLy8gMy4gQ29tcGFyYcOnw6NvOiB2YXJpw6F2ZWwgdGlwYWRhIHZzIGFueVxubGV0IG5vbWU6IHN0cmluZyA9IFwiSm/Do29cIjtcbi8vIG5vbWUgPSAxMjM7IC8vIEVSUk86IFR5cGUgJ251bWJlcicgbm90IGFzc2lnbmFibGUgdG8gdHlwZSAnc3RyaW5nJ1xuXG5sZXQgaW5mb3JtYWNhbzogYW55ID0gXCJNYXJpYVwiO1xuaW5mb3JtYWNhbyA9IDQ1NjsgLy8gVsOBTElETzogJ2FueScgcGVybWl0ZSBxdWFscXVlciBhdHJpYnVpw6fDo29cblxuLy8gNC4gVXNhbmRvIGFueSBjb20gb2JqZXRvc1xubGV0IHVzdWFyaW86IGFueSA9IHtcbiAgICBub21lOiBcIkNhcmxvc1wiLFxuICAgIGlkYWRlOiAzMFxufTtcblxuLy8gNS4gTW9kaWZpY2FuZG8gcHJvcHJpZWRhZGVzIGxpdnJlbWVudGVcbnVzdWFyaW8uZW1haWwgPSBcImNhcmxvc0BlbWFpbC5jb21cIjsgICAgIC8vIEFkaWNpb25hbmRvIG5vdmEgcHJvcHJpZWRhZGVcbnVzdWFyaW8uaWRhZGUgPSBcInRyaW50YVwiOyAgICAgICAgICAgICAgIC8vIE11ZGFuZG8gdGlwbyBkYSBwcm9wcmllZGFkZVxuXG4vLyBFVEFQQSAzOiBBbnkgZW0gRnVuw6fDtWVzXG4vLyA2LiBGdW7Dp8OjbyBjb20gcGFyw6JtZXRybyBhbnkgLSBhY2VpdGEgcXVhbHF1ZXIgdGlwbyBkZSBhcmd1bWVudG9cbmZ1bmN0aW9uIHByb2Nlc3NhckRhZG9zKGVudHJhZGE6IGFueSk6IGFueSB7XG4gICAgY29uc29sZS5sb2coYFByb2Nlc3NhbmRvOiAke2VudHJhZGF9YCk7XG4gICAgcmV0dXJuIGVudHJhZGE7IC8vIFBvZGUgcmV0b3JuYXIgcXVhbHF1ZXIgdGlwb1xufVxuXG4vLyA3LiBDaGFtYWRhcyB2w6FsaWRhcyBjb20gZGlmZXJlbnRlcyB0aXBvc1xucHJvY2Vzc2FyRGFkb3MoXCJ0ZXh0b1wiKTsgICAgICAgIC8vIFN0cmluZ1xucHJvY2Vzc2FyRGFkb3MoMTIzKTsgICAgICAgICAgICAvLyBOdW1iZXIgIFxucHJvY2Vzc2FyRGFkb3MoeyBjaGF2ZTogXCJ2YWxvclwiIH0pOyAvLyBPYmplY3RcblxuLy8gOC4gRnVuw6fDo28gcXVlIHJldG9ybmEgYW55IC0gcGVyZGVtb3MgYSBpbmZvcm1hw6fDo28gZG8gdGlwb1xuZnVuY3Rpb24gb2J0ZXJEYWRvcygpOiBhbnkge1xuICAgIHJldHVybiBNYXRoLnJhbmRvbSgpID4gMC41ID8gXCJzdWNlc3NvXCIgOiA0MDQ7XG59XG5cbmNvbnN0IHJlc3VsdGFkbyA9IG9idGVyRGFkb3MoKTtcbi8vIHJlc3VsdGFkbyBwb2RlIHNlciBzdHJpbmcgb3UgbnVtYmVyIC0gVHlwZVNjcmlwdCBuw6NvIHNhYmUgcXVhbFxuXG4vLyBFVEFQQSA0OiBBbnkgY29tIEFycmF5c1xuLy8gOS4gQXJyYXkgY29tIHRpcG8gYW55IC0gcG9kZSBtaXN0dXJhciB0aXBvcyBkaWZlcmVudGVzXG5jb25zdCBsaXN0YU1pc3RhOiBhbnlbXSA9IFtcInRleHRvXCIsIDQyLCB0cnVlLCB7IG5vbWU6IFwib2JqXCIgfV07XG4vLyBEaWZlcmVudGUgZGUgYXJyYXlzIG5vcm1haXMgcXVlIGV4aWdlbSB0aXBvcyBjb25zaXN0ZW50ZXNcblxuLy8gMTAuIEFkaWNpb25hbmRvIHF1YWxxdWVyIHRpcG8gYW8gYXJyYXlcbmxpc3RhTWlzdGEucHVzaChudWxsKTtcbmxpc3RhTWlzdGEucHVzaChbMSwgXCJkb2lzXCIsIGZhbHNlXSk7XG5cbi8vIDExLiBBY2Vzc2FuZG8gZWxlbWVudG9zIHNlbSB2ZXJpZmljYcOnw6NvIGRlIHRpcG9cbmNvbnN0IHByaW1laXJvID0gbGlzdGFNaXN0YVswXTsgLy8gVGlwbzogYW55IC0gcG9kZSBzZXIgcXVhbHF1ZXIgY29pc2FcblxuLy8gRVRBUEEgNTogUHJvYmxlbWFzIGUgUmlzY29zIGRvIEFueVxuLy8gMTIuIFBFUklHTzogT3BlcmHDp8O1ZXMgc2VtIHZlcmlmaWNhw6fDo28gZGUgdGlwb1xubGV0IHZhbG9yOiBhbnkgPSBcImlzc28gw6kgdW0gdGV4dG9cIjtcblxuLy8gMTMuIFR5cGVTY3JpcHQgbsOjbyBwcmV2aW5lIG9wZXJhw6fDtWVzIGludsOhbGlkYXNcbmxldCBjb21wcmltZW50byA9IHZhbG9yLmxlbmd0aDsgICAgICAgIC8vIEZ1bmNpb25hIC0gdmFsb3Igw6kgc3RyaW5nXG52YWxvciA9IDEyMzsgICAgICAgICAgICAgICAgICAgICAgICAgICAvLyBNdWRvdSBwYXJhIG51bWJlclxubGV0IGNvbXByaW1lbnRvMiA9IHZhbG9yLmxlbmd0aDsgICAgICAgLy8gVU5ERUZJTkVEISBudW1iZXIgbsOjbyB0ZW0gLmxlbmd0aFxuXG4vLyAxNC4gUEVSSUdPOiBDaGFtYWRhcyBkZSBtw6l0b2RvIHNlbSB2ZXJpZmljYcOnw6NvXG5sZXQgb2JqZXRvOiBhbnkgPSB7IHg6IDEwIH07XG4vLyBvYmpldG8ubWV0b2RvSW5leGlzdGVudGUoKTsgLy8gRVJSTyBlbSB0ZW1wbyBkZSBleGVjdcOnw6NvIVxuXG4vLyAxNS4gUEVSSUdPOiBPcGVyYcOnw7VlcyBtYXRlbcOhdGljYXMgY29tIHRpcG9zIGluY29tcGF0w612ZWlzXG5sZXQgbnVtZXJvOiBhbnkgPSBcIjEwMFwiO1xubGV0IHJlc3VsdGFkbzIgPSBudW1lcm8gKyA1MDsgLy8gXCIxMDA1MFwiIChjb25jYXRlbmHDp8OjbyBlbSB2ZXogZGUgc29tYSlcblxuLy8gRVRBUEEgNjogQ2Fzb3MgZGUgVXNvIExlZ8OtdGltb3MgZG8gQW55XG4vLyAxNi4gTWlncmHDp8OjbyBkZSBKYXZhU2NyaXB0IHBhcmEgVHlwZVNjcmlwdFxuY29uc3QgZGFkb3NMZWdhZG9zOiBhbnkgPSBvYnRlckRhZG9zRGVCaWJsaW90ZWNhSmF2YVNjcmlwdCgpO1xuLy8gw5p0aWwgcXVhbmRvIG7Do28gc2FiZW1vcyBvIHRpcG8gcmV0b3JuYWRvIHBvciBiaWJsaW90ZWNhcyBleHRlcm5hc1xuXG4vLyAxNy4gVHJhYmFsaGFuZG8gY29tIEFQSXMgZGluw6JtaWNhc1xuZnVuY3Rpb24gcGFyc2VKc29uKGpzb25TdHJpbmc6IHN0cmluZyk6IGFueSB7XG4gICAgcmV0dXJuIEpTT04ucGFyc2UoanNvblN0cmluZyk7IC8vIE8gdGlwbyBkbyBKU09OIHBvZGUgdmFyaWFyXG59XG5cbmNvbnN0IGRhZG9zQXBpID0gcGFyc2VKc29uKCd7XCJub21lXCI6IFwiSm/Do29cIiwgXCJpZGFkZVwiOiAzMH0nKTtcbi8vIFR5cGVTY3JpcHQgbsOjbyBzYWJlIGEgZXN0cnV0dXJhIGRvIG9iamV0byByZXRvcm5hZG9cblxuLy8gMTguIFF1YW5kbyBwcmVjaXNhbW9zIGRlIGZsZXhpYmlsaWRhZGUgdGVtcG9yw6FyaWFcbmxldCBjb25maWc6IGFueSA9IGNhcnJlZ2FyQ29uZmlndXJhY2FvKCk7XG4vLyBNYWlzIHRhcmRlIHBvZGVtb3MgcmVmaW5hciBwYXJhIHRpcG9zIGVzcGVjw61maWNvc1xuXG4vLyBFVEFQQSA3OiBBbHRlcm5hdGl2YXMgTWVsaG9yZXMgcXVlIEFueVxuLy8gMTkuIEVtIHZleiBkZSBhbnksIHVzZSB1bmlvbiB0eXBlcyBxdWFuZG8gcG9zc8OtdmVsXG5sZXQgaWQ6IHN0cmluZyB8IG51bWJlciA9IFwiQUJDMTIzXCI7XG5pZCA9IDEyMzsgLy8gVsOhbGlkbywgbWFzIG1haXMgc2VndXJvIHF1ZSBhbnlcblxuLy8gMjAuIFVua25vd24gLSBhbHRlcm5hdGl2YSBtYWlzIHNlZ3VyYSBhbyBhbnlcbmxldCBkYWRvc1NlZ3Vyb3M6IHVua25vd24gPSBcInRleHRvXCI7XG4vLyBkYWRvc1NlZ3Vyb3MudG9VcHBlckNhc2UoKTsgLy8gRVJSTzogcHJlY2lzYSBkZSB0eXBlIGd1YXJkXG5cbi8vIDIxLiBUeXBlIGd1YXJkcyBjb20gdW5rbm93blxuaWYgKHR5cGVvZiBkYWRvc1NlZ3Vyb3MgPT09IFwic3RyaW5nXCIpIHtcbiAgICBkYWRvc1NlZ3Vyb3MudG9VcHBlckNhc2UoKTsgLy8gQWdvcmEgc2VndXJvIC0gVHlwZVNjcmlwdCBzYWJlIHF1ZSDDqSBzdHJpbmdcbn1cblxuLy8gMjIuIEludGVyZmFjZXMgcGFyYSBvYmpldG9zIGRpbsOibWljb3NcbmludGVyZmFjZSBEYWRvc0RpbmFtaWNvcyB7XG4gICAgW2tleTogc3RyaW5nXTogYW55OyAvLyBQcm9wcmllZGFkZXMgY29tIGNoYXZlIHN0cmluZyBlIHZhbG9yIHF1YWxxdWVyXG59XG5cbmNvbnN0IGRhZG9zRmxleGl2ZWlzOiBEYWRvc0RpbmFtaWNvcyA9IHtcbiAgICBub21lOiBcIk1hcmlhXCIsXG4gICAgaWRhZGU6IDI1LFxuICAgIGF0aXZvOiB0cnVlXG59O1xuXG4vLyAyMy4gUVVBTkRPIFVTQVIgQU5ZOlxuLy8gLSBNaWdyYcOnw6NvIGdyYWR1YWwgZGUgSlMgcGFyYSBUU1xuLy8gLSBEYWRvcyBkZSBmb250ZXMgZXh0ZXJuYXMgZGVzY29uaGVjaWRhcyAgXG4vLyAtIFByb3RvdGlwYWdlbSByw6FwaWRhXG5cbi8vIDI0LiBRVUFORE8gRVZJVEFSIEFOWTpcbi8vIC0gQ8OzZGlnbyBkZSBwcm9kdcOnw6NvXG4vLyAtIFF1YW5kbyB0aXBvcyBwb2RlbSBzZXIgaW5mZXJpZG9zXG4vLyAtIFBhcmEgbWFudGVyIGEgc2VndXJhbsOnYSBkZSB0aXBvc1xuXG4vLyAyNS4gTEVNQlJFVEU6IEFueSByZW1vdmUgdG9kb3Mgb3MgYmVuZWbDrWNpb3MgZG8gVHlwZVNjcmlwdCFcbi8vIFVzZSBjb20gbW9kZXJhw6fDo28gZSBwcmVmaXJhIHRpcG9zIGVzcGVjw61maWNvcyBxdWFuZG8gcG9zc8OtdmVsIl0sIm5hbWVzIjpbImRhZG9zIiwibm9tZSIsImluZm9ybWFjYW8iLCJ1c3VhcmlvIiwiaWRhZGUiLCJlbWFpbCIsInByb2Nlc3NhckRhZG9zIiwiZW50cmFkYSIsImNvbnNvbGUiLCJsb2ciLCJjb25jYXQiLCJjaGF2ZSIsIm9idGVyRGFkb3MiLCJNYXRoIiwicmFuZG9tIiwicmVzdWx0YWRvIiwibGlzdGFNaXN0YSIsInB1c2giLCJwcmltZWlybyIsInZhbG9yIiwiY29tcHJpbWVudG8iLCJsZW5ndGgiLCJjb21wcmltZW50bzIiLCJvYmpldG8iLCJ4IiwibnVtZXJvIiwicmVzdWx0YWRvMiIsImRhZG9zTGVnYWRvcyIsIm9idGVyRGFkb3NEZUJpYmxpb3RlY2FKYXZhU2NyaXB0IiwicGFyc2VKc29uIiwianNvblN0cmluZyIsIkpTT04iLCJwYXJzZSIsImRhZG9zQXBpIiwiY29uZmlnIiwiY2FycmVnYXJDb25maWd1cmFjYW8iLCJpZCIsImRhZG9zU2VndXJvcyIsInRvVXBwZXJDYXNlIiwiZGFkb3NGbGV4aXZlaXMiLCJhdGl2byJdLCJzb3VyY2VSb290IjoiIn0=

@@ -1,0 +1,109 @@
+/******/ (() => { // webpackBootstrap
+/*!**************************************!*\
+  !*** ./src/secao19/aula278/index.ts ***!
+  \**************************************/
+// TIPOS LITERAIS
+// Literal types in TypeScript allow you to specify exact values that variables can hold, providing more precision than broader types like string or number.
+// They are the building blocks for creating precise and type-safe applications.
+
+// Key Concepts
+// String Literals: Exact string values like "success" | "error"
+// Numeric Literals: Specific numbers like 1 | 2 | 3
+// Boolean Literals: Either true or false
+// Template Literal Types: String literal types built using template string syntax
+// Common Use Cases
+// Defining specific sets of allowed values
+// Creating discriminated unions
+// Type-safe event handling
+// API response typing
+// Configuration objects
+
+// Example 1: String Literal Types
+var direction;
+
+// Valid assignment
+direction = "north";
+
+// Invalid assignments would cause errors
+// direction = "northeast"; // Error: Type '"northeast"' is not assignable to type '"north" | "south" | "east" | "west"'
+// direction = "up"; // Error: Type '"up"' is not assignable to type '"north" | "south" | "east" | "west"'
+
+// Using string literal types in functions
+function move(direction) {
+  console.log("Moving ".concat(direction));
+}
+
+// Numeric Literal Types
+// Similar to string literals, numeric literal types represent specific numeric values:
+var diceRoll;
+// Valid assignments
+diceRoll = 1;
+diceRoll = 6;
+
+// Invalid assignments would cause errors
+// diceRoll = 0; // Error: Type '0' is not assignable to type '1 | 2 | 3 | 4 | 5 | 6'
+// diceRoll = 7; // Error: Type '7' is not assignable to type '1 | 2 | 3 | 4 | 5 | 6'
+// diceRoll = 2.5; // Error: Type '2.5' is not assignable to type '1 | 2 | 3 | 4 | 5 | 6'
+
+// Using numeric literal types in functions:
+function rollDice() {
+  return Math.floor(Math.random() * 6 + 1);
+}
+var result = rollDice();
+console.log("You rolled a ".concat(result));
+
+// Boolean Literal Types
+// Boolean literal types are less commonly used since there are only two boolean values, but they can be useful in specific scenarios:
+// // A type that can only be the literal value 'true':
+
+// A function that must return true
+function alwaysSucceed() {
+  // Always returns the literal value 'true'
+  return true;
+}
+
+// Boolean literal combined with other types:
+
+function processResult(result) {
+  if (result === true || result === "success" || result === 1) {
+    console.log("Operation succeeded");
+  } else {
+    console.log("Operation failed");
+  }
+}
+;
+processResult(true); // "Operation succeeded"
+processResult("success"); // "Operation succeeded"
+processResult(1); // "Operation succeeded"
+processResult(false); // "Operation failed"
+
+// Literal Types with Objects
+// Object with literal property values:
+
+function handleResponse(response) {
+  if (response.status >= 200 && response.status < 300) {
+    console.log("Success: ".concat(response.status, " - ").concat(response.statusText));
+  } else {
+    console.log("Error: ".concat(response.status, " - ").concat(response.statusText));
+  }
+}
+
+// Example usage
+var successResponse = {
+  status: 200,
+  statusText: "OK",
+  data: {
+    username: "john_doe",
+    email: "john@example.com"
+  }
+};
+var errorResponse = {
+  status: 404,
+  statusText: "Not Found",
+  error: "User not found in database"
+};
+handleResponse(successResponse);
+handleResponse(errorResponse);
+/******/ })()
+;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXVsYTI3OC5idW5kbGUuanMiLCJtYXBwaW5ncyI6Ijs7OztBQUFBO0FBQ0E7QUFDQTs7QUFFQTtBQUNJO0FBQ0E7QUFDQTtBQUNBO0FBQ0o7QUFDSTtBQUNBO0FBQ0E7QUFDQTtBQUNBOztBQUVKO0FBQ0EsSUFBSUEsU0FBOEM7O0FBRWxEO0FBQ0FBLFNBQVMsR0FBRyxPQUFPOztBQUVuQjtBQUNBO0FBQ0E7O0FBRUE7QUFDQSxTQUFTQyxJQUFJQSxDQUFDRCxTQUE4QyxFQUFFO0VBQzFERSxPQUFPLENBQUNDLEdBQUcsV0FBQUMsTUFBQSxDQUFXSixTQUFTLENBQUUsQ0FBQztBQUN0Qzs7QUFFQTtBQUNBO0FBQ0EsSUFBSUssUUFBK0I7QUFDbkM7QUFDQUEsUUFBUSxHQUFHLENBQUM7QUFDWkEsUUFBUSxHQUFHLENBQUM7O0FBRVo7QUFDQTtBQUNBO0FBQ0E7O0FBRUE7QUFDQSxTQUFTQyxRQUFRQSxDQUFBLEVBQTBCO0VBQ3ZDLE9BQU9DLElBQUksQ0FBQ0MsS0FBSyxDQUFDRCxJQUFJLENBQUNFLE1BQU0sQ0FBQyxDQUFDLEdBQUcsQ0FBQyxHQUFHLENBQUMsQ0FBQztBQUM1QztBQUVBLElBQU1DLE1BQU0sR0FBR0osUUFBUSxDQUFDLENBQUM7QUFDekJKLE9BQU8sQ0FBQ0MsR0FBRyxpQkFBQUMsTUFBQSxDQUFpQk0sTUFBTSxDQUFFLENBQUM7O0FBRXJDO0FBQ0k7QUFDSjs7QUFHQTtBQUNBLFNBQVNDLGFBQWFBLENBQUEsRUFBUztFQUM3QjtFQUNBLE9BQU8sSUFBSTtBQUNiOztBQUVBOztBQUlBLFNBQVNDLGFBQWFBLENBQUNGLE1BQWlDLEVBQUU7RUFDdEQsSUFBSUEsTUFBTSxLQUFLLElBQUksSUFBSUEsTUFBTSxLQUFLLFNBQVMsSUFBSUEsTUFBTSxLQUFLLENBQUMsRUFBRTtJQUN6RFIsT0FBTyxDQUFDQyxHQUFHLENBQUMscUJBQXFCLENBQUM7RUFDdEMsQ0FBQyxNQUFNO0lBQ0hELE9BQU8sQ0FBQ0MsR0FBRyxDQUFDLGtCQUFrQixDQUFDO0VBQ25DO0FBQ0o7QUFBQztBQUNEUyxhQUFhLENBQUMsSUFBSSxDQUFDLENBQUMsQ0FBQztBQUNyQkEsYUFBYSxDQUFDLFNBQVMsQ0FBQyxDQUFDLENBQUM7QUFDMUJBLGFBQWEsQ0FBQyxDQUFDLENBQUMsQ0FBQyxDQUFDO0FBQ2xCQSxhQUFhLENBQUMsS0FBSyxDQUFDLENBQUMsQ0FBQzs7QUFFdEI7QUFDSTs7QUFlSixTQUFTQyxjQUFjQSxDQUFDQyxRQUFzQixFQUFFO0VBQzVDLElBQUlBLFFBQVEsQ0FBQ0MsTUFBTSxJQUFJLEdBQUcsSUFBSUQsUUFBUSxDQUFDQyxNQUFNLEdBQUcsR0FBRyxFQUFFO0lBQ2pEYixPQUFPLENBQUNDLEdBQUcsYUFBQUMsTUFBQSxDQUFhVSxRQUFRLENBQUNDLE1BQU0sU0FBQVgsTUFBQSxDQUFNVSxRQUFRLENBQUNFLFVBQVUsQ0FBRSxDQUFDO0VBQ3ZFLENBQUMsTUFBTTtJQUNIZCxPQUFPLENBQUNDLEdBQUcsV0FBQUMsTUFBQSxDQUFXVSxRQUFRLENBQUNDLE1BQU0sU0FBQVgsTUFBQSxDQUFNVSxRQUFRLENBQUNFLFVBQVUsQ0FBRSxDQUFDO0VBQ3JFO0FBQ0o7O0FBRUE7QUFDQSxJQUFNQyxlQUE0QixHQUFHO0VBQ25DRixNQUFNLEVBQUUsR0FBRztFQUNYQyxVQUFVLEVBQUUsSUFBSTtFQUNoQkUsSUFBSSxFQUFFO0lBQUVDLFFBQVEsRUFBRSxVQUFVO0lBQUVDLEtBQUssRUFBRTtFQUFtQjtBQUMxRCxDQUFDO0FBRUQsSUFBTUMsYUFBd0IsR0FBRztFQUMvQk4sTUFBTSxFQUFFLEdBQUc7RUFDWEMsVUFBVSxFQUFFLFdBQVc7RUFDdkJNLEtBQUssRUFBRTtBQUNULENBQUM7QUFFRFQsY0FBYyxDQUFDSSxlQUFlLENBQUM7QUFDL0JKLGNBQWMsQ0FBQ1EsYUFBYSxDQUFDLEMiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvc2VjYW8xOS9hdWxhMjc4L2luZGV4LnRzIl0sInNvdXJjZXNDb250ZW50IjpbIi8vIFRJUE9TIExJVEVSQUlTXG4vLyBMaXRlcmFsIHR5cGVzIGluIFR5cGVTY3JpcHQgYWxsb3cgeW91IHRvIHNwZWNpZnkgZXhhY3QgdmFsdWVzIHRoYXQgdmFyaWFibGVzIGNhbiBob2xkLCBwcm92aWRpbmcgbW9yZSBwcmVjaXNpb24gdGhhbiBicm9hZGVyIHR5cGVzIGxpa2Ugc3RyaW5nIG9yIG51bWJlci5cbi8vIFRoZXkgYXJlIHRoZSBidWlsZGluZyBibG9ja3MgZm9yIGNyZWF0aW5nIHByZWNpc2UgYW5kIHR5cGUtc2FmZSBhcHBsaWNhdGlvbnMuXG5cbi8vIEtleSBDb25jZXB0c1xuICAgIC8vIFN0cmluZyBMaXRlcmFsczogRXhhY3Qgc3RyaW5nIHZhbHVlcyBsaWtlIFwic3VjY2Vzc1wiIHwgXCJlcnJvclwiXG4gICAgLy8gTnVtZXJpYyBMaXRlcmFsczogU3BlY2lmaWMgbnVtYmVycyBsaWtlIDEgfCAyIHwgM1xuICAgIC8vIEJvb2xlYW4gTGl0ZXJhbHM6IEVpdGhlciB0cnVlIG9yIGZhbHNlXG4gICAgLy8gVGVtcGxhdGUgTGl0ZXJhbCBUeXBlczogU3RyaW5nIGxpdGVyYWwgdHlwZXMgYnVpbHQgdXNpbmcgdGVtcGxhdGUgc3RyaW5nIHN5bnRheFxuLy8gQ29tbW9uIFVzZSBDYXNlc1xuICAgIC8vIERlZmluaW5nIHNwZWNpZmljIHNldHMgb2YgYWxsb3dlZCB2YWx1ZXNcbiAgICAvLyBDcmVhdGluZyBkaXNjcmltaW5hdGVkIHVuaW9uc1xuICAgIC8vIFR5cGUtc2FmZSBldmVudCBoYW5kbGluZ1xuICAgIC8vIEFQSSByZXNwb25zZSB0eXBpbmdcbiAgICAvLyBDb25maWd1cmF0aW9uIG9iamVjdHNcblxuLy8gRXhhbXBsZSAxOiBTdHJpbmcgTGl0ZXJhbCBUeXBlc1xubGV0IGRpcmVjdGlvbjogXCJub3J0aFwiIHwgXCJzb3V0aFwiIHwgXCJlYXN0XCIgfCBcIndlc3RcIjtcblxuLy8gVmFsaWQgYXNzaWdubWVudFxuZGlyZWN0aW9uID0gXCJub3J0aFwiO1xuXG4vLyBJbnZhbGlkIGFzc2lnbm1lbnRzIHdvdWxkIGNhdXNlIGVycm9yc1xuLy8gZGlyZWN0aW9uID0gXCJub3J0aGVhc3RcIjsgLy8gRXJyb3I6IFR5cGUgJ1wibm9ydGhlYXN0XCInIGlzIG5vdCBhc3NpZ25hYmxlIHRvIHR5cGUgJ1wibm9ydGhcIiB8IFwic291dGhcIiB8IFwiZWFzdFwiIHwgXCJ3ZXN0XCInXG4vLyBkaXJlY3Rpb24gPSBcInVwXCI7IC8vIEVycm9yOiBUeXBlICdcInVwXCInIGlzIG5vdCBhc3NpZ25hYmxlIHRvIHR5cGUgJ1wibm9ydGhcIiB8IFwic291dGhcIiB8IFwiZWFzdFwiIHwgXCJ3ZXN0XCInXG5cbi8vIFVzaW5nIHN0cmluZyBsaXRlcmFsIHR5cGVzIGluIGZ1bmN0aW9uc1xuZnVuY3Rpb24gbW92ZShkaXJlY3Rpb246IFwibm9ydGhcIiB8IFwic291dGhcIiB8IFwiZWFzdFwiIHwgXCJ3ZXN0XCIpIHtcbiAgICBjb25zb2xlLmxvZyhgTW92aW5nICR7ZGlyZWN0aW9ufWApO1xufVxuXG4vLyBOdW1lcmljIExpdGVyYWwgVHlwZXNcbi8vIFNpbWlsYXIgdG8gc3RyaW5nIGxpdGVyYWxzLCBudW1lcmljIGxpdGVyYWwgdHlwZXMgcmVwcmVzZW50IHNwZWNpZmljIG51bWVyaWMgdmFsdWVzOlxubGV0IGRpY2VSb2xsOiAxIHwgMiB8IDMgfCA0IHwgNSB8IDY7XG4vLyBWYWxpZCBhc3NpZ25tZW50c1xuZGljZVJvbGwgPSAxO1xuZGljZVJvbGwgPSA2O1xuXG4vLyBJbnZhbGlkIGFzc2lnbm1lbnRzIHdvdWxkIGNhdXNlIGVycm9yc1xuLy8gZGljZVJvbGwgPSAwOyAvLyBFcnJvcjogVHlwZSAnMCcgaXMgbm90IGFzc2lnbmFibGUgdG8gdHlwZSAnMSB8IDIgfCAzIHwgNCB8IDUgfCA2J1xuLy8gZGljZVJvbGwgPSA3OyAvLyBFcnJvcjogVHlwZSAnNycgaXMgbm90IGFzc2lnbmFibGUgdG8gdHlwZSAnMSB8IDIgfCAzIHwgNCB8IDUgfCA2J1xuLy8gZGljZVJvbGwgPSAyLjU7IC8vIEVycm9yOiBUeXBlICcyLjUnIGlzIG5vdCBhc3NpZ25hYmxlIHRvIHR5cGUgJzEgfCAyIHwgMyB8IDQgfCA1IHwgNidcblxuLy8gVXNpbmcgbnVtZXJpYyBsaXRlcmFsIHR5cGVzIGluIGZ1bmN0aW9uczpcbmZ1bmN0aW9uIHJvbGxEaWNlKCk6IDEgfCAyIHwgMyB8IDQgfCA1IHwgNiB7XG4gICAgcmV0dXJuIE1hdGguZmxvb3IoTWF0aC5yYW5kb20oKSAqIDYgKyAxKSBhcyAxIHwgMiB8IDMgfCA0IHwgNSB8IDY7XG59XG5cbmNvbnN0IHJlc3VsdCA9IHJvbGxEaWNlKCk7XG5jb25zb2xlLmxvZyhgWW91IHJvbGxlZCBhICR7cmVzdWx0fWApO1xuXG4vLyBCb29sZWFuIExpdGVyYWwgVHlwZXNcbiAgICAvLyBCb29sZWFuIGxpdGVyYWwgdHlwZXMgYXJlIGxlc3MgY29tbW9ubHkgdXNlZCBzaW5jZSB0aGVyZSBhcmUgb25seSB0d28gYm9vbGVhbiB2YWx1ZXMsIGJ1dCB0aGV5IGNhbiBiZSB1c2VmdWwgaW4gc3BlY2lmaWMgc2NlbmFyaW9zOlxuLy8gLy8gQSB0eXBlIHRoYXQgY2FuIG9ubHkgYmUgdGhlIGxpdGVyYWwgdmFsdWUgJ3RydWUnOlxudHlwZSBZZXNPbmx5ID0gdHJ1ZTtcblxuLy8gQSBmdW5jdGlvbiB0aGF0IG11c3QgcmV0dXJuIHRydWVcbmZ1bmN0aW9uIGFsd2F5c1N1Y2NlZWQoKTogdHJ1ZSB7XG4gIC8vIEFsd2F5cyByZXR1cm5zIHRoZSBsaXRlcmFsIHZhbHVlICd0cnVlJ1xuICByZXR1cm4gdHJ1ZTtcbn1cblxuLy8gQm9vbGVhbiBsaXRlcmFsIGNvbWJpbmVkIHdpdGggb3RoZXIgdHlwZXM6XG50eXBlIFN1Y2Nlc3NGbGFnID0gdHJ1ZSB8IFwic3VjY2Vzc1wiIHwgMTtcbnR5cGUgRmFpbHVyZUZsYWcgPSBmYWxzZSB8IFwiZmFpbHVyZVwiIHwgMFxuXG5mdW5jdGlvbiBwcm9jZXNzUmVzdWx0KHJlc3VsdDogU3VjY2Vzc0ZsYWcgfCBGYWlsdXJlRmxhZykge1xuICAgIGlmIChyZXN1bHQgPT09IHRydWUgfHwgcmVzdWx0ID09PSBcInN1Y2Nlc3NcIiB8fCByZXN1bHQgPT09IDEpIHtcbiAgICAgICAgY29uc29sZS5sb2coXCJPcGVyYXRpb24gc3VjY2VlZGVkXCIpO1xuICAgIH0gZWxzZSB7XG4gICAgICAgIGNvbnNvbGUubG9nKFwiT3BlcmF0aW9uIGZhaWxlZFwiKTtcbiAgICB9XG59O1xucHJvY2Vzc1Jlc3VsdCh0cnVlKTsgLy8gXCJPcGVyYXRpb24gc3VjY2VlZGVkXCJcbnByb2Nlc3NSZXN1bHQoXCJzdWNjZXNzXCIpOyAvLyBcIk9wZXJhdGlvbiBzdWNjZWVkZWRcIlxucHJvY2Vzc1Jlc3VsdCgxKTsgLy8gXCJPcGVyYXRpb24gc3VjY2VlZGVkXCJcbnByb2Nlc3NSZXN1bHQoZmFsc2UpOyAvLyBcIk9wZXJhdGlvbiBmYWlsZWRcIlxuXG4vLyBMaXRlcmFsIFR5cGVzIHdpdGggT2JqZWN0c1xuICAgIC8vIE9iamVjdCB3aXRoIGxpdGVyYWwgcHJvcGVydHkgdmFsdWVzOlxudHlwZSBIVFRQU3VjY2VzcyA9IHtcbiAgICBzdGF0dXM6IDIwMCB8IDIwMSB8IDIwNDtcbiAgICBzdGF0dXNUZXh0OiBcIk9LXCIgfCBcIkNyZWF0ZWRcIiB8IFwiIE5vIENvbnRlbnRcIjtcbiAgICBkYXRhOiBhbnk7XG59O1xuXG50eXBlIEhUVFBFcnJvciA9IHtcbiAgICBzdGF0dXM6IDQwMCB8IDQwMSB8IDQwMyB8IDQwNCB8IDUwMDtcbiAgICBzdGF0dXNUZXh0OiBcIkJhZCBSZXF1ZXN0XCIgfCBcIlVuYXV0aG9yaXplZFwiIHwgXCJGb3JiaWRkZW5cIiB8IFwiTm90IEZvdW5kXCIgfCBcIkludGVybmFsIFNlcnZlciBFcnJvclwiO1xuICAgIGVycm9yOiBzdHJpbmc7XG59XG5cbnR5cGUgSFRUUFJlc3BvbnNlID0gSFRUUFN1Y2Nlc3MgfCBIVFRQRXJyb3I7XG5cbmZ1bmN0aW9uIGhhbmRsZVJlc3BvbnNlKHJlc3BvbnNlOiBIVFRQUmVzcG9uc2UpIHtcbiAgICBpZiAocmVzcG9uc2Uuc3RhdHVzID49IDIwMCAmJiByZXNwb25zZS5zdGF0dXMgPCAzMDApIHtcbiAgICAgICAgY29uc29sZS5sb2coYFN1Y2Nlc3M6ICR7cmVzcG9uc2Uuc3RhdHVzfSAtICR7cmVzcG9uc2Uuc3RhdHVzVGV4dH1gKTsgICAgXG4gICAgfSBlbHNlIHtcbiAgICAgICAgY29uc29sZS5sb2coYEVycm9yOiAke3Jlc3BvbnNlLnN0YXR1c30gLSAke3Jlc3BvbnNlLnN0YXR1c1RleHR9YCk7XG4gICAgfVxufVxuXG4vLyBFeGFtcGxlIHVzYWdlXG5jb25zdCBzdWNjZXNzUmVzcG9uc2U6IEhUVFBTdWNjZXNzID0ge1xuICBzdGF0dXM6IDIwMCxcbiAgc3RhdHVzVGV4dDogXCJPS1wiLFxuICBkYXRhOiB7IHVzZXJuYW1lOiBcImpvaG5fZG9lXCIsIGVtYWlsOiBcImpvaG5AZXhhbXBsZS5jb21cIiB9XG59O1xuXG5jb25zdCBlcnJvclJlc3BvbnNlOiBIVFRQRXJyb3IgPSB7XG4gIHN0YXR1czogNDA0LFxuICBzdGF0dXNUZXh0OiBcIk5vdCBGb3VuZFwiLFxuICBlcnJvcjogXCJVc2VyIG5vdCBmb3VuZCBpbiBkYXRhYmFzZVwiXG59O1xuXG5oYW5kbGVSZXNwb25zZShzdWNjZXNzUmVzcG9uc2UpO1xuaGFuZGxlUmVzcG9uc2UoZXJyb3JSZXNwb25zZSk7Il0sIm5hbWVzIjpbImRpcmVjdGlvbiIsIm1vdmUiLCJjb25zb2xlIiwibG9nIiwiY29uY2F0IiwiZGljZVJvbGwiLCJyb2xsRGljZSIsIk1hdGgiLCJmbG9vciIsInJhbmRvbSIsInJlc3VsdCIsImFsd2F5c1N1Y2NlZWQiLCJwcm9jZXNzUmVzdWx0IiwiaGFuZGxlUmVzcG9uc2UiLCJyZXNwb25zZSIsInN0YXR1cyIsInN0YXR1c1RleHQiLCJzdWNjZXNzUmVzcG9uc2UiLCJkYXRhIiwidXNlcm5hbWUiLCJlbWFpbCIsImVycm9yUmVzcG9uc2UiLCJlcnJvciJdLCJzb3VyY2VSb290IjoiIn0=
